@@ -7,8 +7,16 @@ bool LinkedBag<ItemType>::removeSecondNode340() {
 }
 
 template<typename ItemType>
-bool LinkedBag<ItemType>::addEnd340(const ItemType &) {
-    return false;
+bool LinkedBag<ItemType>::addEnd340(const ItemType &toAdd) {
+    if (headPtr == nullptr) { return false; }
+    Node<ItemType> *thisNode = headPtr;
+    while (thisNode->getNext() != nullptr) {
+        thisNode = thisNode->getNext();
+    }
+    // TODO: "new" vs declaring pointer and passing to setNext()?
+    thisNode->setNext(new Node(toAdd));
+    itemCount++;
+    return true;
 }
 
 template<typename ItemType>
