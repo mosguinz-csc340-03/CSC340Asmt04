@@ -21,7 +21,13 @@ bool LinkedBag<ItemType>::addEnd340(const ItemType &toAdd) {
 
 template<typename ItemType>
 int LinkedBag<ItemType>::getCurrentSize340Iterative() const {
-    return 0;
+    int count;
+    Node<ItemType> *thisNode = headPtr;
+    while (thisNode->getNext() != nullptr) {
+        thisNode = thisNode->getNext();
+        count++;
+    }
+    return count;
 }
 
 template<typename ItemType>
