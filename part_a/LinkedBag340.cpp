@@ -2,7 +2,8 @@
 
 template<typename ItemType>
 bool LinkedBag<ItemType>::removeSecondNode340() {
-    return false;
+    if (itemCount < 2) { return false; }
+    return remove(headPtr->getNext()->getItem());
 }
 
 template<typename ItemType>
