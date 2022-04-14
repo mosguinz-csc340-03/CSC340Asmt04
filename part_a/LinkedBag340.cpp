@@ -1,3 +1,5 @@
+#include <random>
+
 #include "LinkedBag.h"
 
 template<typename ItemType>
@@ -32,17 +34,27 @@ int LinkedBag<ItemType>::getCurrentSize340Iterative() const {
 
 template<typename ItemType>
 int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
-    return 0;
+    if (headPtr == nullptr) { return 0; }
+    Node<ItemType> *thisNode = headPtr;
+    return getCurrentSize340RecursiveHelper(thisNode);
 }
 
 template<typename ItemType>
-int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType> *) const {
-    return 0;
+int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType> *thisNode) const {
+    if (thisNode == nullptr) { return 0; }
+    return 1 + getCurrentSize340RecursiveHelper(thisNode->getNext());
 }
 
 template<typename ItemType>
 int LinkedBag<ItemType>::getCurrentSize340RecursiveNoHelper() const {
-    return 0;
+    // TODO: can static be avoided?
+    static Node<ItemType> *thisNode = headPtr;
+    if (thisNode == nullptr) {
+        delete thisNode;
+        return 0;
+    }
+    thisNode = thisNode->getNext();
+    return 1 + getCurrentSize340RecursiveNoHelper();
 }
 
 template<typename ItemType>
@@ -64,6 +76,7 @@ template<typename ItemType>
 ItemType LinkedBag<ItemType>::removeRandom340() {
     int i;
     Node<ItemType> *toRemove = headPtr;
+
     while (i > rand() % itemCount) {
         toRemove = toRemove->getNext();
     }
