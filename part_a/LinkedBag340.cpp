@@ -58,18 +58,32 @@ int LinkedBag<ItemType>::getCurrentSize340RecursiveNoHelper() const {
 }
 
 template<typename ItemType>
-int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType &) const {
-    return 0;
+int LinkedBag<ItemType>::getFrequencyOf340Recursive(const ItemType &target) const {
+    Node<ItemType> *thisNode = headPtr;
+    return getFrequencyOf340RecursiveHelper(thisNode, target);
 }
 
 template<typename ItemType>
-int LinkedBag<ItemType>::getFrequencyOf340RecursiveHelper(Node<ItemType> *, const ItemType &) const {
-    return 0;
+int LinkedBag<ItemType>::getFrequencyOf340RecursiveHelper(Node<ItemType> *thisNode, const ItemType &target) const {
+    if (thisNode == nullptr) {
+        delete thisNode;
+        return 0;
+    }
+    int a = thisNode->getItem() == target ? 1 : 0;
+    thisNode = thisNode->getNext();
+    return a + getFrequencyOf340RecursiveHelper(thisNode, target);
 }
 
 template<typename ItemType>
-int LinkedBag<ItemType>::getFrequencyOf340RecursiveNoHelper(const ItemType &) const {
-    return 0;
+int LinkedBag<ItemType>::getFrequencyOf340RecursiveNoHelper(const ItemType &target) const {
+    static Node<ItemType> *thisNode = headPtr;
+    if (thisNode == nullptr) {
+        thisNode = headPtr;
+        return 0;
+    }
+    int a = thisNode->getItem() == target ? 1 : 0;
+    thisNode = thisNode->getNext();
+    return a + getFrequencyOf340RecursiveNoHelper(target);
 }
 
 template<typename ItemType>
