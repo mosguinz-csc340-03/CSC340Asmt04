@@ -34,16 +34,17 @@ void B1() {
 
 }
 
-void B2() {
+// For (B)(2) and (B)(3)
+class Student {
+ public:
+    explicit Student(std::string name) : name(std::move(name)) {};
+    ~Student() { std::cout << "Destroyed " << name << std::endl; }
+    std::string GetName() { return name; }
+ private:
+    std::string name;
+};
 
-    class Student {
-     public:
-        explicit Student(std::string name) : name(std::move(name)) {};
-        ~Student() { std::cout << "Destroyed " << name << std::endl; }
-        std::string GetName() { return name; }
-     private:
-        std::string name;
-    };
+void B2() {
 
     {
         std::cout << "Entering a block" << std::endl;
