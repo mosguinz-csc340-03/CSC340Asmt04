@@ -63,6 +63,45 @@ void B2() {
 
 }
 
+void B3() {
+    class ReportCard {
+     public:
+        explicit ReportCard(const std::string &name, const char &grade) :
+            student(std::make_unique<Student>(name)),
+            grade(std::make_unique<char>(grade)) {}
+        ~ReportCard() {
+            std::cout << "Destroying " << student->GetName() << "'s \"" << grade << "\" report card" << std::endl;
+        }
+     private:
+     public:
+        const std::unique_ptr<Student> &GetStudent() const { return student; }
+        const std::unique_ptr<char> &GetGrade() const { return grade; }
+        std::unique_ptr<Student> student{nullptr};
+        std::unique_ptr<char> grade;
+    };
+
+    {
+        std::cout << "Entering a block" << std::endl;
+        std::cout << "{" << std::endl;
+
+        std::cout << "  Creating a `ReportCard` instance for a `Student` named Alice using `unique_ptr`" << std::endl;
+        std::cout << "  The `ReportCard` instance has a member that is a `unique_ptr` pointing to a `Student` instance"
+                  << std::endl;
+        std::unique_ptr<ReportCard> card{std::make_unique<ReportCard>("Alice", 'A')};
+
+        std::cout << "  Once this `unique_ptr` goes out of scope, `~ReportCard()` will be automatically invoked"
+                  << std::endl;
+        std::cout << "  Because its members are also `unique_ptr`s, they too, will invoke their respective destructors"
+                  << std::endl;
+
+        std::cout << "  For visualization, a simple print statement is placed in `~ReportCard()` -- nothing \"special\""
+                  << std::endl;
+
+        std::cout << "}" << std::endl;
+        std::cout << "Leaving this block" << std::endl;
+    }
+}
+
 int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(1) Deleting the same memory twice" << std::endl << std::endl;
@@ -70,4 +109,7 @@ int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(2) Using smart pointers to deal with `new` instance" << std::endl << std::endl;
     B2();
+    std::cout << std::endl << "=======================" << std::endl << std::endl;
+    std::cout << "(B)(3) Using smart pointers for class instance and its members" << std::endl << std::endl;
+    B3();
 }
