@@ -1,4 +1,6 @@
 #include <iostream>
+#include <memory>
+#include <utility>
 
 #define NAME(x) #x
 
@@ -32,6 +34,36 @@ void B1() {
     std::cerr << "part_b(36739," << a << ") malloc: *** set a breakpoint in malloc_error_break to debug" << std::endl;
 }
 
+void B2() {
+
+    class Student {
+     public:
+        explicit Student(std::string name) : name(std::move(name)) {};
+        ~Student() { std::cout << "Destroyed " << name << std::endl; }
+        std::string GetName() { return name; }
+     private:
+        std::string name;
+    };
+
+    {
+        std::cout << "Entering a block" << std::endl;
+        std::cout << "{" << std::endl;
+
+        std::cout << "  Creating a `Student` instance named Bob using `unique_ptr` in the block" << std::endl;
+        std::unique_ptr<Student> s{std::make_unique<Student>("Bob")};
+
+        std::cout << "  Inside the block, we can access the instance using the unique pointer" << std::endl;
+        std::cout << "  For example: this student's name is " << s->GetName() << std::endl;
+        std::cout << "  Once we leave this scope, the smart pointer ensures that the object is destroyed" << std::endl;
+
+        std::cout << "}" << std::endl;
+        std::cout << "Leaving this block" << std::endl;
+    }
+
+}
+
 int main() {
     B1();
+    std::cout << std::endl << "=======================" << std::endl << std::endl;
+    B2();
 }
