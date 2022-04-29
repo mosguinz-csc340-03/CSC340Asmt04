@@ -5,7 +5,6 @@
 #define NAME(x) #x
 
 void B1() {
-    std::cout << "(B)(1) Deleting the same memory twice" << std::endl << std::endl;
 
     std::string *a = new std::string{"Bob"};
     std::cout << "Created an `std::string` using `new`; the pointer is captured to a variable `a`" << std::endl;
@@ -32,6 +31,7 @@ void B1() {
     std::cout << "part_b(36739," << a << ") malloc: *** error for object " << a
               << ": pointer being freed was not allocated" << std::endl;
     std::cout << "part_b(36739," << a << ") malloc: *** set a breakpoint in malloc_error_break to debug" << std::endl;
+
 }
 
 void B2() {
@@ -63,7 +63,10 @@ void B2() {
 }
 
 int main() {
+    std::cout << std::endl << "=======================" << std::endl << std::endl;
+    std::cout << "(B)(1) Deleting the same memory twice" << std::endl << std::endl;
     B1();
     std::cout << std::endl << "=======================" << std::endl << std::endl;
+    std::cout << "(B)(2) Using smart pointers to deal with `new` instance" << std::endl << std::endl;
     B2();
 }
