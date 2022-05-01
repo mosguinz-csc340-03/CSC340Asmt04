@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include <utility>
+#include <typeinfo>
 
 #define NAME(x) #x
 
@@ -102,6 +103,19 @@ void B3() {
     }
 }
 
+void B4() {
+
+    std::cout << "A `unique_ptr` can be converted into a `shared_ptr` using the `std::move()`" << std::endl;
+    std::unique_ptr<std::string> u{std::make_unique<std::string>("test")};
+    std::cout << "Unique pointer `u` points to " << u << std::endl << std::endl;
+
+    std::cout << "Using `std::move()` on `u`, we can convert `u` into a shared pointer" << std::endl;
+    std::shared_ptr<std::string> s = std::move(u);
+    std::cout << "Shared pointer `s` points to " << s << std::endl;
+    std::cout << "And the old unique pointer `u` points to " << u << std::endl;
+
+}
+
 int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(1) Deleting the same memory twice" << std::endl << std::endl;
@@ -112,4 +126,7 @@ int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(3) Using smart pointers for class instance and its members" << std::endl << std::endl;
     B3();
+    std::cout << std::endl << "=======================" << std::endl << std::endl;
+    std::cout << "(B)(4) Converting unique pointers to shared pointers" << std::endl << std::endl;
+    B4();
 }
