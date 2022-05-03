@@ -3,5 +3,5 @@ project(CSC340Asmt04)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(part_c
+add_executable(PartC_SmartPointers
         BagInterface.h Include.h LinkedBag.cpp LinkedBag.h LinkedBag340.cpp LinkedBagClient340.cpp Node.cpp Node.h)
