@@ -116,6 +116,27 @@ void B4() {
 
 }
 
+void B5() {
+
+    std::cout << "Creating a `shared_ptr` called `name`" << std::endl;
+    std::shared_ptr<std::string> name{std::make_shared<std::string>("Bob")};
+    std::cout << "`name` points to " << name << std::endl << std::endl;
+
+    std::cout << "Creating a `weak_ptr` to called `weak_name` to observe `name`" << std::endl;
+    std::weak_ptr<std::string> weak_name{name};
+
+    std::cout << "Using `expired()`, we can check whether the ownership is still valid" << std::endl
+              << "weak_name.expired(): " << weak_name.expired() << std::endl << std::endl;
+
+    std::cout << "Invoking `reset()` on the shared_ptr `name`" << std::endl;
+    name.reset();
+    std::cout << "`name` now points to " << name << std::endl;
+
+    std::cout << "With the weak_ptr, we can check whether the object is still alive" << std::endl
+              << "weak_name.expired(): " << weak_name.expired() << std::endl << std::endl;
+
+}
+
 int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(1) Deleting the same memory twice" << std::endl << std::endl;
@@ -129,4 +150,7 @@ int main() {
     std::cout << std::endl << "=======================" << std::endl << std::endl;
     std::cout << "(B)(4) Converting unique pointers to shared pointers" << std::endl << std::endl;
     B4();
+    std::cout << std::endl << "=======================" << std::endl << std::endl;
+    std::cout << "(B)(5) Use `weak_ptr` for `shared_ptr` like pointers that can dangle " << std::endl << std::endl;
+    B5();
 }
