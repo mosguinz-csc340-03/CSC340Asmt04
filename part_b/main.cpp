@@ -40,7 +40,7 @@ void B1() {
 class Student {
  public:
     explicit Student(std::string name) : name(std::move(name)) {};
-    ~Student() { std::cout << "Destroyed " << name << std::endl; }
+    ~Student() { std::cout << "Destroying " << name << std::endl; }
     std::string GetName() { return name; }
  private:
     std::string name;
@@ -49,8 +49,8 @@ class Student {
 void B2() {
 
     {
-        std::cout << "Entering a block" << std::endl;
-        std::cout << "{" << std::endl;
+        std::cout << "Entering a block" << std::endl
+                  << "{" << std::endl;
 
         std::cout << "  Creating a `Student` instance named Bob using `unique_ptr` in the block" << std::endl;
         std::unique_ptr<Student> s{std::make_unique<Student>("Bob")};
@@ -59,8 +59,8 @@ void B2() {
         std::cout << "  For example: this student's name is " << s->GetName() << std::endl;
         std::cout << "  Once we leave this scope, the smart pointer ensures that the object is destroyed" << std::endl;
 
-        std::cout << "}" << std::endl;
-        std::cout << "Leaving this block" << std::endl;
+        std::cout << "}" << std::endl
+                  << "Leaving this block" << std::endl;
     }
 
 }
@@ -83,8 +83,8 @@ void B3() {
     };
 
     {
-        std::cout << "Entering a block" << std::endl;
-        std::cout << "{" << std::endl;
+        std::cout << "Entering a block" << std::endl
+                  << "{" << std::endl;
 
         std::cout << "  Creating a `ReportCard` instance for a `Student` named Alice using `unique_ptr`" << std::endl;
         std::cout << "  The `ReportCard` instance has a member that is a `unique_ptr` pointing to a `Student` instance"
@@ -99,8 +99,8 @@ void B3() {
         std::cout << "  For visualization, a simple print statement is placed in `~ReportCard()` -- nothing \"special\""
                   << std::endl;
 
-        std::cout << "}" << std::endl;
-        std::cout << "Leaving this block" << std::endl;
+        std::cout << "}" << std::endl
+                  << "Leaving this block" << std::endl;
     }
 }
 
