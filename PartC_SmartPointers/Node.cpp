@@ -4,6 +4,7 @@
 //  Copyright (c) 2017 Pearson Education, Hoboken, New Jersey.
 
 #include "Node.h"
+#include <iostream>
 
 template<typename ItemType>
 Node<ItemType>::Node() : item(), next(nullptr) {}
@@ -33,4 +34,8 @@ ItemType Node<ItemType>::getItem() const {
 template<typename ItemType>
 Node<ItemType> *Node<ItemType>::getNext() const {
     return next;
+}
+template<typename ItemType>
+Node<ItemType>::~Node() {
+    std::cout << "[Node at " << this << " is being destroyed.]";
 }

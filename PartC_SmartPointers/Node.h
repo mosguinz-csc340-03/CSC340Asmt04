@@ -9,6 +9,7 @@ template<typename ItemType>
 class Node {
  public:
     Node();
+    ~Node();
     Node(const ItemType &);
     Node(const ItemType &, Node<ItemType> *);
     void setItem(const ItemType &);
