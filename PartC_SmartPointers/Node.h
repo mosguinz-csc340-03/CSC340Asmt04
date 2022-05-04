@@ -5,24 +5,18 @@
 
 #pragma once
 
-//
-//
-// PLEASE DO NOT CHANGE THIS FILE
-//
-//
-
 template<typename ItemType>
 class Node {
-public:
-	Node();
-	Node(const ItemType&);
-	Node(const ItemType&, Node<ItemType>*);
-	void setItem(const ItemType&);
-	void setNext(Node<ItemType>*);
-	ItemType getItem() const;
-	Node<ItemType>* getNext() const;
+ public:
+    Node();
+    Node(const ItemType &);
+    Node(const ItemType &, Node<ItemType> *);
+    void setItem(const ItemType &);
+    void setNext(Node<ItemType> *);
+    ItemType getItem() const;
+    Node<ItemType> *getNext() const;
 
-private:
-	ItemType        item{};			 // A data item
-	Node<ItemType>* next{ nullptr }; // Pointer to next node
+ private:
+    ItemType item{};             // A data item
+    Node<ItemType> *next{nullptr}; // Pointer to next node
 };
