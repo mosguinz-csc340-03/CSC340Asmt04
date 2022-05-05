@@ -12,12 +12,11 @@ bool LinkedBag<ItemType>::removeSecondNode340() {
 template<typename ItemType>
 bool LinkedBag<ItemType>::addEnd340(const ItemType &toAdd) {
     if (headPtr == nullptr) { return false; }
-    Node<ItemType> *thisNode = headPtr;
+    Node<ItemType> *thisNode = headPtr.get();
     while (thisNode->getNext() != nullptr) {
         thisNode = thisNode->getNext();
     }
-    // TODO: "new" vs declaring pointer and passing to setNext()?
-    thisNode->setNext(new Node(toAdd));
+    thisNode->setNext(std::make_unique<Node<ItemType>>(toAdd));
     itemCount++;
     return true;
 }
