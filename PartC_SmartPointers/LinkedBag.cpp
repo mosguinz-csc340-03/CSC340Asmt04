@@ -117,14 +117,14 @@ template<typename ItemType>
 int LinkedBag<ItemType>::getFrequencyOf(const ItemType &anEntry) const {
     int frequency = 0;
     int counter = 0;
-    Node<ItemType> *curPtr = headPtr;
+    Node<ItemType> *curPtr = headPtr.get();
 
     while ((curPtr != nullptr) && (counter < itemCount)) {
         if (anEntry == curPtr->getItem()) {
             frequency++;
         }
         counter++;
-        curPtr = curPtr->getNext();
+        curPtr = curPtr->next.get();
     }
 
     return frequency;
