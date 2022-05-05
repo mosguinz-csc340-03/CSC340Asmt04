@@ -17,9 +17,8 @@ class Node {
     void setItem(const ItemType &);
     void setNext(std::unique_ptr<Node<ItemType>>);
     ItemType getItem() const;
-    std::unique_ptr<Node<ItemType>> getNext() const;
+    Node<ItemType> *getNext() const;
 
- private:
     ItemType item{};             // A data item
     std::unique_ptr<Node<ItemType>> next{nullptr}; // Pointer to next node
 };

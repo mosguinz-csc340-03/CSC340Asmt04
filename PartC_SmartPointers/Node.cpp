@@ -24,7 +24,7 @@ void Node<ItemType>::setItem(const ItemType &anItem) {
 
 template<typename ItemType>
 void Node<ItemType>::setNext(std::unique_ptr<Node<ItemType>> nextNodePtr) {
-    next = nextNodePtr;
+    next = std::move(nextNodePtr);
 }
 
 template<typename ItemType>
@@ -33,8 +33,8 @@ ItemType Node<ItemType>::getItem() const {
 }
 
 template<typename ItemType>
-std::unique_ptr<Node<ItemType>> Node<ItemType>::getNext() const {
-    return std::move(next);
+Node<ItemType> *Node<ItemType>::getNext() const {
+    return next.get();
 }
 
 template<typename ItemType>
