@@ -5,6 +5,7 @@
 
 #include "Node.h"
 #include <iostream>
+#include <memory>
 
 template<typename ItemType>
 Node<ItemType>::Node() : item(), next(nullptr) {}
@@ -13,7 +14,7 @@ template<typename ItemType>
 Node<ItemType>::Node(const ItemType &anItem) : item(anItem), next(nullptr) {}
 
 template<typename ItemType>
-Node<ItemType>::Node(const ItemType &anItem, Node<ItemType> *nextNodePtr) :
+Node<ItemType>::Node(const ItemType &anItem, std::unique_ptr<Node<ItemType>> nextNodePtr) :
     item(anItem), next(nextNodePtr) {}
 
 template<typename ItemType>
@@ -22,7 +23,7 @@ void Node<ItemType>::setItem(const ItemType &anItem) {
 }
 
 template<typename ItemType>
-void Node<ItemType>::setNext(Node<ItemType> *nextNodePtr) {
+void Node<ItemType>::setNext(std::unique_ptr<Node<ItemType>> nextNodePtr) {
     next = nextNodePtr;
 }
 
@@ -32,9 +33,10 @@ ItemType Node<ItemType>::getItem() const {
 }
 
 template<typename ItemType>
-Node<ItemType> *Node<ItemType>::getNext() const {
-    return next;
+std::unique_ptr<Node<ItemType>> Node<ItemType>::getNext() const {
+    return std::move(next);
 }
+
 template<typename ItemType>
 Node<ItemType>::~Node() {
     std::cout << "[Node \"" << item << "\" at " << this << " is being destroyed.]\n";
