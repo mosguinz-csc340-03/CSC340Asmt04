@@ -37,5 +37,5 @@ Node<ItemType> *Node<ItemType>::getNext() const {
 }
 template<typename ItemType>
 Node<ItemType>::~Node() {
-    std::cout << "[Node at " << this << " is being destroyed.]";
+    std::cout << "[Node \"" << item << "\" at " << this << " is being destroyed.]\n";
 }
