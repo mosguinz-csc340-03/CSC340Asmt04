@@ -19,6 +19,9 @@ class Node {
     ItemType getItem() const;
     Node<ItemType> *getNext() const;
 
+ private:
     ItemType item{};             // A data item
     std::unique_ptr<Node<ItemType>> next{nullptr}; // Pointer to next node
+    template<typename> friend
+    class LinkedBag;
 };
