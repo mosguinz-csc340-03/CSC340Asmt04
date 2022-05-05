@@ -57,7 +57,7 @@ bool LinkedBag<ItemType>::add(const ItemType &newEntry) {
 
     auto newNode{std::make_unique<Node<ItemType>>(newEntry)};
     if (headPtr) {
-        newNode->setNext(headPtr);
+        newNode->setNext(std::move(headPtr));
     }
     headPtr = std::move(newNode);
     itemCount++;
