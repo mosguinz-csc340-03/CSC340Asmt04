@@ -73,7 +73,7 @@ bool LinkedBag<ItemType>::add(const ItemType &newEntry) {
 template<typename ItemType>
 std::vector<ItemType> LinkedBag<ItemType>::toVector() const {
     std::vector<ItemType> bagContents;
-    Node<ItemType> *curPtr = headPtr;
+    Node<ItemType> *curPtr = headPtr.get();
     int counter = 0;
 
     while ((curPtr != nullptr) && (counter < itemCount)) {
