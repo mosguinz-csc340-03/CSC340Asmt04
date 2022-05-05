@@ -143,8 +143,9 @@ Node<ItemType> *LinkedBag<ItemType>::getPointerTo(const ItemType &anEntry) const
         if (anEntry == curPtr->getItem()) {
             return curPtr;
         }
-        curPtr->getNext().get();
+        curPtr = curPtr->getNext();
     }
+    return nullptr;
 
 //    bool found = false;
 //    Node<ItemType> *curPtr = headPtr;
