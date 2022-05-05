@@ -143,16 +143,32 @@ bool LinkedBag<ItemType>::contains(const ItemType &anEntry) const {
 
 template<typename ItemType>
 Node<ItemType> *LinkedBag<ItemType>::getPointerTo(const ItemType &anEntry) const {
-    bool found = false;
-    Node<ItemType> *curPtr = headPtr;
 
-    while (!found && (curPtr != nullptr)) {
+    Node<ItemType> *curPtr = headPtr.get();
+    while (curPtr) {
         if (anEntry == curPtr->getItem()) {
-            found = true;
-        } else {
-            curPtr = curPtr->getNext();
+            return curPtr;
         }
+        curPtr->getNext().get();
     }
 
-    return curPtr;
+//    bool found = false;
+//    Node<ItemType> *curPtr = headPtr;
+//
+//    while (curPtr) {
+//        if (anEntry == curPtr->getItem()) {
+//            return curPtr;
+//        }
+//        curPtr->getNext().get();
+//    }
+//
+//    while (!found && (curPtr != nullptr)) {
+//        if (anEntry == curPtr->getItem()) {
+//            found = true;
+//        } else {
+//            curPtr = curPtr->getNext();
+//        }
+//    }
+//
+//    return curPtr;
 } 
