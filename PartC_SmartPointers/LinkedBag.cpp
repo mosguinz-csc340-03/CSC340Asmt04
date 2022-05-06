@@ -106,7 +106,7 @@ int LinkedBag<ItemType>::getFrequencyOf(const ItemType &anEntry) const {
             frequency++;
         }
         counter++;
-        curPtr = curPtr->next.get();
+        curPtr = curPtr->getNext();
     }
 
     return frequency;
