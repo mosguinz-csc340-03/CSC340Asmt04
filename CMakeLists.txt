@@ -3,6 +3,6 @@ project(CSC340Asmt04)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/part_a)
+add_subdirectory(${PROJECT_SOURCE_DIR}/PartA_LinkedBag340)
 add_subdirectory(${PROJECT_SOURCE_DIR}/part_b)
 add_subdirectory(${PROJECT_SOURCE_DIR}/PartC_SmartPointers)
