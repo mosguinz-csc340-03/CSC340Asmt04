@@ -11,7 +11,11 @@ bool LinkedBag<ItemType>::removeSecondNode340() {
 
 template<typename ItemType>
 bool LinkedBag<ItemType>::addEnd340(const ItemType &toAdd) {
-    if (headPtr == nullptr) { return false; }
+    if (headPtr == nullptr) {
+        headPtr = std::make_unique<Node<ItemType>>(toAdd);
+        return true;
+    }
+
     Node<ItemType> *thisNode = headPtr.get();
     while (thisNode->getNext() != nullptr) {
         thisNode = thisNode->getNext();
