@@ -35,6 +35,7 @@ LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType> &aBag) {
 
 template<typename ItemType>
 LinkedBag<ItemType>::~LinkedBag() {
+    std::cout << "   [LinkedBag instance with " << itemCount << " item(s) is being destroyed]   ";
     clear();
 }
 
