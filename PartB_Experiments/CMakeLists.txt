@@ -3,4 +3,4 @@ project(CSC340Asmt04)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(part_b main.cpp)
+add_executable(PartB_Experiments main.cpp)
