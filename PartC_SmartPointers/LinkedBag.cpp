@@ -13,21 +13,18 @@ LinkedBag<ItemType>::LinkedBag() : headPtr(nullptr), itemCount(0) {}
 template<typename ItemType>
 LinkedBag<ItemType>::LinkedBag(const LinkedBag<ItemType> &aBag) {
     itemCount = aBag.itemCount;
-    Node<ItemType> *origChainPtr = aBag.headPtr;
+    Node<ItemType> *origChainPtr = aBag.headPtr.get();
 
     if (origChainPtr == nullptr) {
         headPtr = nullptr;
     } else {
-        headPtr = new Node<ItemType>();
-        headPtr->setItem(origChainPtr->getItem());
+        headPtr = std::make_unique<Node<ItemType>>(origChainPtr->getItem());
 
-        Node<ItemType> *newChainPtr = headPtr;
+        Node<ItemType> *newChainPtr = headPtr.get();
         origChainPtr = origChainPtr->getNext();
 
         while (origChainPtr != nullptr) {
-            ItemType nextItem = origChainPtr->getItem();
-            Node<ItemType> *newNodePtr = new Node<ItemType>(nextItem);
-            newChainPtr->setNext(newNodePtr);
+            newChainPtr->setNext(std::make_unique<Node<ItemType>>(origChainPtr->getItem()));
             newChainPtr = newChainPtr->getNext();
             origChainPtr = origChainPtr->getNext();
         }
