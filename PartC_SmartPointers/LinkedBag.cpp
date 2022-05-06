@@ -50,8 +50,6 @@ int LinkedBag<ItemType>::getCurrentSize() const {
 
 template<typename ItemType>
 bool LinkedBag<ItemType>::add(const ItemType &newEntry) {
-//    Node<ItemType> *nextNodePtr = new Node<ItemType>();
-
     auto newNode{std::make_unique<Node<ItemType>>(newEntry)};
     if (headPtr) {
         newNode->setNext(std::move(headPtr));
@@ -59,12 +57,6 @@ bool LinkedBag<ItemType>::add(const ItemType &newEntry) {
     headPtr = std::move(newNode);
     itemCount++;
     return true;
-
-//    nextNodePtr->setItem(newEntry);
-//    nextNodePtr->setNext(headPtr);
-//    headPtr = nextNodePtr;
-//    itemCount++;
-//    return true;
 }
 
 template<typename ItemType>
@@ -98,14 +90,6 @@ bool LinkedBag<ItemType>::remove(const ItemType &anEntry) {
 
 template<typename ItemType>
 void LinkedBag<ItemType>::clear() {
-//    Node<ItemType> *nodeToDeletePtr = headPtr;
-//
-//    while (headPtr != nullptr) {
-//        headPtr = headPtr->getNext();
-//        nodeToDeletePtr->setNext(nullptr);
-//        delete nodeToDeletePtr;
-//        nodeToDeletePtr = headPtr;
-//
     headPtr = nullptr;
     itemCount = 0;
 }
@@ -143,24 +127,4 @@ Node<ItemType> *LinkedBag<ItemType>::getPointerTo(const ItemType &anEntry) const
         curPtr = curPtr->getNext();
     }
     return nullptr;
-
-//    bool found = false;
-//    Node<ItemType> *curPtr = headPtr;
-//
-//    while (curPtr) {
-//        if (anEntry == curPtr->getItem()) {
-//            return curPtr;
-//        }
-//        curPtr->getNext().get();
-//    }
-//
-//    while (!found && (curPtr != nullptr)) {
-//        if (anEntry == curPtr->getItem()) {
-//            found = true;
-//        } else {
-//            curPtr = curPtr->getNext();
-//        }
-//    }
-//
-//    return curPtr;
 } 
