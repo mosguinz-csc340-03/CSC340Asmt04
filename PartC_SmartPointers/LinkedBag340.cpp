@@ -35,7 +35,7 @@ int LinkedBag<ItemType>::getCurrentSize340Iterative() const {
 template<typename ItemType>
 int LinkedBag<ItemType>::getCurrentSize340Recursive() const {
     if (headPtr == nullptr) { return 0; }
-    Node<ItemType> *thisNode = headPtr;
+    Node<ItemType> *thisNode = headPtr.get();
     return getCurrentSize340RecursiveHelper(thisNode);
 }
 
@@ -47,8 +47,7 @@ int LinkedBag<ItemType>::getCurrentSize340RecursiveHelper(Node<ItemType> *thisNo
 
 template<typename ItemType>
 int LinkedBag<ItemType>::getCurrentSize340RecursiveNoHelper() const {
-    // TODO: can static be avoided?
-    static Node<ItemType> *thisNode = headPtr;
+    static Node<ItemType> *thisNode = headPtr.get();
     if (thisNode == nullptr) {
         delete thisNode;
         return 0;
