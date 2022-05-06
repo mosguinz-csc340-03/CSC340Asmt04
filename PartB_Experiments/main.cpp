@@ -30,9 +30,10 @@ void B1() {
     // delete b;
 
     // In Clang,
-    std::cout << "part_b(36739," << a << ") malloc: *** error for object " << a
+    std::cout << "PartB_Experiments(36739," << a << ") malloc: *** error for object " << a
               << ": pointer being freed was not allocated" << std::endl
-              << "part_b(36739," << a << ") malloc: *** set a breakpoint in malloc_error_break to debug" << std::endl;
+              << "PartB_Experiments(36739," << a << ") malloc: *** set a breakpoint in malloc_error_break to debug"
+              << std::endl;
 
 }
 
