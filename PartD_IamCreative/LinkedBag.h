@@ -20,6 +20,8 @@ class LinkedBag : public BagInterface<ItemType> {
     int getFrequencyOf340Recursive(const ItemType &) const;
     int getFrequencyOf340RecursiveNoHelper(const ItemType &) const;
     ItemType removeRandom340();
+    // Part D
+    static std::unique_ptr<LinkedBag<ItemType>> fromVector(std::unique_ptr<std::vector<ItemType>>);
  private:
     int getCurrentSize340RecursiveHelper(Node<ItemType> *) const; // if needed
     int getFrequencyOf340RecursiveHelper(Node<ItemType> *, const ItemType &) const; // if needed

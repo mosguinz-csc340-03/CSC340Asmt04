@@ -103,3 +103,18 @@ ItemType LinkedBag<ItemType>::removeRandom340() {
     ItemType itemToRemove = thisNode->getItem();
     return remove(itemToRemove) ? itemToRemove : nullptr;
 }
+
+/**
+ * Create a LinkedBag instance from a given unique_ptr containing a vector.
+ * @tparam ItemType The type matching the provided vector's template arg.
+ * @return A unique_ptr of the created LinkedBag instance.
+ */
+template<typename ItemType>
+std::unique_ptr<LinkedBag<ItemType>> LinkedBag<ItemType>::fromVector(std::unique_ptr<std::vector<ItemType>> vec) {
+    auto newBag{std::make_unique<LinkedBag<ItemType>>()};
+    std::vector<std::string>::const_iterator cItr;
+    for (cItr = vec->begin(); cItr != vec->end(); cItr++) {
+        newBag->add(*cItr);
+    }
+    return std::move(newBag);
+}
